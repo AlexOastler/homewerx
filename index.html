@@ -16,17 +16,21 @@
 </head>
 <body>
 
+<!--home page start -->
 
-<div id="test" data-role="page">
+<div id="mainpage" data-role="page">
     <div role="main" class="ui-content">
         <a href="#addtask" class="ui-btn">Add Event</a>
         <a href="#home" class="ui-btn">View Homework</a>
         <a href="#class" class="ui-btn">Add Class</a>
+        <a href="#manageclass" class="ui-btn">Manage Classes</a>
         <a href="#reset" class="ui-btn">Reset</a>
 
     </div>
 </div>
+<!--home page end-->
 
+<!--add event page start-->
 
 <div id="addtask" data-role="page">
     <div data-role="header">
@@ -37,19 +41,31 @@
 
     <div role="main" class="ui-content">
         <form>
-            <label for="range-1a">Description:</label>
+            <label for="DescriptionED">Description:</label>
             <input type="text" id="DescriptionED" value="">
+            <label for="DateED">Date:</label>
+            <input data-role="date" type="text" id="DateED" >
 
-            <label for="range-1a">Class:</label>
-             <input type="text" id="ClassED" value="">
 
-            <label for="range-1a">Date:</label>
-             <input type="date" id="DateED" value="">
+            <label for="select-choice-a" class="select">Class</label>
+            <select name="select-choice-a" id="select-choice-a" data-native-menu="false">
+                   
+                <option value="standard">Math</option>
+                    
+                <option value="standard">Science</option>
+                    
+                <option value="standard">English</option>
+                    
+                <option value="standard">Music</option>
+                <option value="standard">Geography</option>
+                <option value="standard">Civics</option>
+            </select>
+
 
             <script>
                 function myFunction() {
                     document.getElementById("DescriptionUI").value = document.getElementById("DescriptionED").value;
-                    document.getElementById("ClassUI").value = document.getElementById("ClassED").value;
+                    document.getElementById("ClassUI").value = document.getElementById("option value").value;
                     document.getElementById("DateUI").value = document.getElementById("DateED").value;
                 }
             </script>
@@ -57,12 +73,12 @@
 
                     
             <fieldset data-role="controlgroup">
-                        <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="on" checked="checked">
-                        <label for="radio-choice-v-2a">HomeWork</label>
-                        <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="off">
-                        <label for="radio-choice-v-2b">Assignments</label>
-                        <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2c" value="other">
-                        <label for="radio-choice-v-2c">Tests</label>
+                <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="on" checked="checked">
+                <label for="radio-choice-v-2a">HomeWork</label>
+                <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="off">
+                <label for="radio-choice-v-2b">Assignments</label>
+                <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2c" value="other">
+                 <label for="radio-choice-v-2c">Tests</label>
                     
             </fieldset>
         </form>
@@ -70,19 +86,28 @@
             
 
 
-        <button onclick="myFunction()">Copy Text</button>
-        <a href="#home" class="ui-btn">submit</a>
+        <a href="#home" class="ui-btn" onClick="myFunction()">submit</a>
     </div>
 
 </div>
+
+<!--add event page end-->
+
+<!--view homework page start-->
 <div id="home" data-role="page">
     <div role="main" class="ui-content">
         <div data-role="collapsibleset">
-            <div data-role="collapsible" data-collapsed="false">
-                <h3>HomeWork</h3>
-
-
-                <table border="1" style="width:100%">
+            <div data-role="collapsible" data-collapsed="true">
+                <h3>Homework</h3>
+                <table data-role="table" id="homework-table" data-mode="reflow" class="ui-responsive">
+                    <thead>
+                    <tr>
+                        <th data-priority="1">Description</th>
+                        <th data-priority="2">Class</th>
+                        <th data-priority="3">Due Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td><input type="text" id="DescriptionUI" readonly><br></td>
                         <td><input type="text" id="ClassUI" readonly><br></td>
@@ -98,12 +123,13 @@
                         <td></td>
                         <td></td>
                     </tr>
+                    </tbody>
+
                 </table>
-                 
             </div>
         </div>
         <div data-role="collapsibleset">
-            <div data-role="collapsible" data-collapsed="false">
+            <div data-role="collapsible" data-collapsed="true">
                 <h3>Assignments</h3>
                 <table data-role="table" id="homework-table" data-mode="reflow" class="ui-responsive">
                     <thead>
@@ -120,9 +146,9 @@
                         <td><input type="text" id="DateUI" readonly><br></td>
                     </tr>
                     <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -135,13 +161,21 @@
             </div>
         </div>
         <div data-role="collapsibleset">
-            <div data-role="collapsible" data-collapsed="false">
+            <div data-role="collapsible" data-collapsed="true">
                 <h3>Tests</h3>
-                <table border="1" style="width:100%">
+                <table data-role="table" id="homework-table" data-mode="reflow" class="ui-responsive">
+                    <thead>
                     <tr>
-                        <td><input type="text" id="DescriptionUI2" readonly><br></td>
-                        <td><input type="text" id="ClassUI2" readonly><br></td>
-                        <td><input type="text" id="DateUI2" readonly><br></td>
+                        <th data-priority="1">Description</th>
+                        <th data-priority="2">Class</th>
+                        <th data-priority="3">Due Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="text" id="DescriptionUI" readonly><br></td>
+                        <td><input type="text" id="ClassUI" readonly><br></td>
+                        <td><input type="text" id="DateUI" readonly><br></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -153,12 +187,54 @@
                         <td></td>
                         <td></td>
                     </tr>
+                    </tbody>
+
                 </table>
             </div>
         </div>
+        <a href="#mainpage" class="ui-btn">menu</a>
         <a href="#addtask" class="ui-btn">Add</a>
     </div>
 </div>
+
+<!--view homework page end-->
+
+<!--input class page start-->
+
+<div id="class" data-role="page">
+    <div role="main" class="ui-content">
+        Input Class Here
+        <input type="text" id="AddclassED"><br>
+        <a href="#mainpage" class="ui-btn">Home</a>
+    </div>
+</div>
+
+<!--input class page end-->
+
+<!--manage class page start-->
+
+
+<div id="manageclass" data-role="page">
+    <div role="main" class="ui-content">
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search classes..." data-inset="true">
+                
+            <li><a href="#">Math</a></li>
+                
+            <li><a href="#">Science</a></li>
+                
+            <li><a href="#">English</a></li>
+                
+            <li><a href="#">Music</a></li>
+                
+            <li><a href="#">Geography</a></li>
+                
+            <li><a href="#">Civics</a></li>
+            <a href="#mainpage" class="ui-btn">Home</a>
+        </ul>
+    </div>
+</div>
+<!--manange class page end-->
+
 
 </body>
 </html>
