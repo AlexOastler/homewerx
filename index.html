@@ -5,7 +5,6 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="msapplication-tap-highlight" content="no"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <link rel="stylesheet" type="text/css" href="css/golfgap.css">
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
@@ -41,34 +40,33 @@
 
     <div role="main" class="ui-content">
         <form>
+            <label for="DateED">Date:</label>
+            <input data-role="date" type="date" id="DateED" value="" >
             <label for="DescriptionED">Description:</label>
             <input type="text" id="DescriptionED" value="">
-            <label for="DateED">Date:</label>
-            <input data-role="date" type="text" id="DateED" >
+            
 
 
             <label for="select-choice-a" class="select">Class</label>
-            <select name="select-choice-a" id="select-choice-a" data-native-menu="false">
-                   
-                <option value="standard">Math</option>
-                    
-                <option value="standard">Science</option>
-                    
-                <option value="standard">English</option>
-                    
-                <option value="standard">Music</option>
-                <option value="standard">Geography</option>
-                <option value="standard">Civics</option>
+            <select name="select-choice-a" id="select-choice-a" data-native-menu="false">  
+                <option value="Math">Math</option>   
+                <option value="Science">Science</option>    
+                <option value="English">English</option>
+                <option value="Music">Music</option>
+                <option value="Geography">Geography</option>
+                <option value="Civics">Civics</option>
             </select>
 
 
             <script>
                 function myFunction() {
-                    document.getElementById("DescriptionUI").value = document.getElementById("DescriptionED").value;
-                    document.getElementById("ClassUI").value = document.getElementById("option value").value;
-                    document.getElementById("DateUI").value = document.getElementById("DateED").value;
-                }
+                    document.getElementById("DescriptionUI").value = document.getElementById("DescriptionED").value
+					document.getElementById("DateUI").value = document.getElementById("DateED").value
+				
+				}
             </script>
+            
+			
 
 
                     
@@ -102,16 +100,16 @@
                 <table data-role="table" id="homework-table" data-mode="reflow" class="ui-responsive">
                     <thead>
                     <tr>
-                        <th data-priority="1">Description</th>
-                        <th data-priority="2">Class</th>
-                        <th data-priority="3">Due Date</th>
+                        <th data-priority="1">Due Date</th>
+                        <th data-priority="2">Description</th>
+                        <th data-priority="3">Class</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
+                        <td><input type="text" id="DateUI" readonly><br></td>
                         <td><input type="text" id="DescriptionUI" readonly><br></td>
                         <td><input type="text" id="ClassUI" readonly><br></td>
-                        <td><input type="text" id="DateUI" readonly><br></td>
                     </tr>
                     <tr>
                         <td></td>

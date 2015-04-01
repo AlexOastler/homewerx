@@ -6,13 +6,13 @@
         id        = "com.phonegap.golfgap"
         version   = "0.1.0">
 
-    <name>Golf Gap</name>
+    <name>Student Homework Helper</name>
 
     <description>
-        Basic Golf Scorecard and stats tracking
+        keep tract of your homework 
     </description>
 
-    <author href="http://idealienstudios.com" email="jamie@idealienstudios.com">
+    <author href="" email="digitalkingdomking@gmail.com">
         Idealien Studios
     </author>
 

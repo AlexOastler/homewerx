@@ -1,2 +1,1 @@
-# golfgap
-Learnin' up PhoneGap via Golf App
+# Alex's Homewerx app
