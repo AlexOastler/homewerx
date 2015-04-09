@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="phonegap.js"></script>
-    <title>Student Homewerx helper</title>
+	 <script src="phonegap.js"></script>
+    <title>Student HomeWork helper</title>
 </head>
 <body>
 
@@ -48,7 +48,7 @@
 
 
             <label for="select-choice-a" class="select">Class</label>
-            <select name="select-choice-a" id="select-choice-a" data-native-menu="false">  
+            <select name="select-choice-a" id="select-choice-a" data-native-menu="true">  
                 <option value="Math">Math</option>   
                 <option value="Science">Science</option>    
                 <option value="English">English</option>
@@ -94,7 +94,18 @@
 <!--view homework page start-->
 <div id="home" data-role="page">
     <div role="main" class="ui-content">
-        <div data-role="collapsibleset">
+        
+		<script>
+		function testFunction(savefav) {
+                    console.log(document.getElementById("DateUI").value)
+					console.log(document.getElementById("DescriptionUI").value)
+				
+				
+				}
+		</script>
+		
+		
+		<div data-role="collapsibleset">
             <div data-role="collapsible" data-collapsed="true">
                 <h3>Homework</h3>
                 <table data-role="table" id="homework-table" data-mode="reflow" class="ui-responsive">
@@ -192,6 +203,7 @@
         </div>
         <a href="#mainpage" class="ui-btn">menu</a>
         <a href="#addtask" class="ui-btn">Add</a>
+		<a href="#home" class="ui-btn" onClick="saveFave()">Test</a>
     </div>
 </div>
 
@@ -233,6 +245,7 @@
 </div>
 <!--manange class page end-->
 
+<script src="js/index.js"></script>
 
 </body>
 </html>
