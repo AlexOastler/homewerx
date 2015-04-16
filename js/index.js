@@ -8,7 +8,7 @@ $('#mainpage').bind('pageinit', function(event) {
 
 function createDb(tx) {
     tx.executeSql("DROP TABLE IF EXISTS homework");
-    tx.executeSql("CREATE TABLE homework(user,name)");
+    tx.executeSql("CREATE TABLE homework(duedate,course,description)");
 }
 
 function txError(error) {
@@ -27,10 +27,11 @@ function saveFave() {
 }
 
 function saveFaveDb(tx) {
-    var owner =  document.getElementById("DescriptionUI").value
-    var name =  document.getElementById("DateUI").value
-
-    tx.executeSql("INSERT INTO homework(user,name) VALUES (?, ?)",[owner,name]);
+    var description =  document.getElementById("DescriptionUI").value;
+    var duedate =  document.getElementById("DateUI").value;
+	var course = "math";
+	
+    tx.executeSql("INSERT INTO homework(duedate,course,description) VALUES (?, ?, ?)",[duedate,course,description]);
 }
 
 function txSuccessFave() {
@@ -39,20 +40,20 @@ function txSuccessFave() {
 }
 
 function checkFave() {
-    db.transaction(checkFaveDb, txError);
+    db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
+	db.transaction(checkFaveDb, txError);
 }
 
 function checkFaveDb(tx) {
-    var owner = owner
-    var name = name
-
-    tx.executeSql("SELECT * FROM homework", [],txSuccessCheckFave , txError);
-	//tx.executeSql("SELECT * FROM homework WHERE user = ? AND name = ?",[owner,name],txSuccessCheckFave);
+    tx.executeSql("SELECT * FROM homework",  [], txSuccessCheckFave , txError);
 }
 
-function txSuccessCheckFave(tx,results) {
-    console.log("Read success");
-    console.log(results);
-	var owner = document.getElementById("DescriptionUI").value
 
+function txSuccessCheckFave(tx,results) {
+  console.log("Read success");
+     console.log("Desc: " + results.rows.item(1)['description']);
+	 
+	 for (i = 0; i < results.rows.length; i++) { 
+		console.log("Item #" + i + " - " + results.rows.item(i)['description']);
+	}
 }
