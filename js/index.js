@@ -7,10 +7,17 @@ $('#mainpage').bind('pageinit', function(event) {
 });
 
 function createDb(tx) {
-    //tx.executeSql("DROP TABLE IF EXISTS homework");
     tx.executeSql("CREATE TABLE homework(duedate,course,description)");
 }
-
+function resetData() {
+	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
+    db.transaction(resetDb, txError, txSuccess);
+	
+	}
+function resetDb(tx) {
+tx.executeSql("DROP TABLE IF EXISTS homework");
+tx.executeSql("CREATE TABLE homework(duedate,course,description)");
+}
 function txError(error) {
     //console.log(error);
     //console.log("Database error: " + error);
@@ -20,17 +27,25 @@ function txSuccess() {
    // console.log("Success");
 }
 
-function saveFave() {
+function saveInfo() {
     db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	//console.log("opens database");
-    db.transaction(saveFaveDb, txError, txSuccessFave);
+    
+	
+    //document.getElementById("DescriptionUI").value = document.getElementById("DescriptionED").value
+	//document.getElementById("DateUI").value = document.getElementById("DateED").value
+	
+	db.transaction(saveFaveDb, txError, txSuccessFave);
+				
+		
 }
 
 function saveFaveDb(tx) {
-    var description =  document.getElementById("DescriptionUI").value;
-    var duedate =  document.getElementById("DateUI").value;
+    var description =  $("#DescriptionED").val();
+    var duedate =  $("#DateED").val();
 	var course = "math";
-	
+	console.log(description);
+	console.log(duedate);
     tx.executeSql("INSERT INTO homework(duedate,course,description) VALUES (?, ?, ?)",[duedate,course,description]);
 }
 
@@ -39,7 +54,7 @@ function txSuccessFave() {
 
 }
 
-function checkFave() {
+function checkInfo() {
     db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(checkFaveDb, txError);
 }
