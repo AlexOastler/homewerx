@@ -7,7 +7,7 @@ $('#mainpage').bind('pageinit', function(event) {
 });
 
 function createDb(tx) {
-    tx.executeSql("DROP TABLE IF EXISTS homework");
+    //tx.executeSql("DROP TABLE IF EXISTS homework");
     tx.executeSql("CREATE TABLE homework(duedate,course,description)");
 }
 
