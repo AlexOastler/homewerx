@@ -1,7 +1,7 @@
 var db;
 
 $('#mainpage').bind('pageinit', function(event) {
-    console.log("binds page");
+    //console.log("binds page");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
     db.transaction(createDb, txError, txSuccess);
 });
@@ -12,17 +12,17 @@ function createDb(tx) {
 }
 
 function txError(error) {
-    console.log(error);
-    console.log("Database error: " + error);
+    //console.log(error);
+    //console.log("Database error: " + error);
 }
 
 function txSuccess() {
-    console.log("Success");
+   // console.log("Success");
 }
 
 function saveFave() {
     db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
-	console.log("opens database");
+	//console.log("opens database");
     db.transaction(saveFaveDb, txError, txSuccessFave);
 }
 
@@ -35,7 +35,7 @@ function saveFaveDb(tx) {
 }
 
 function txSuccessFave() {
-    console.log("Save success");
+    //console.log("Save success");
 
 }
 
@@ -50,7 +50,7 @@ function checkFaveDb(tx) {
 
 
 function txSuccessCheckFave(tx,results) {
-  console.log("Read success");
+ // console.log("Read success");
 	 
 	 //for (i = 0; i < results.rows.length; i++) { 
 		//console.log("Item #" + i + " - " + results.rows.item(i)['description']);
