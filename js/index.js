@@ -70,10 +70,8 @@ function txSuccessCheckFave(tx,results) {
 	 //for (i = 0; i < results.rows.length; i++) { 
 		//console.log("Item #" + i + " - " + results.rows.item(i)['description']);
 	//}
-
-	document.getElementById("DescriptionUI").value = results.rows.item(0)['description'];
+document.getElementById("DescriptionUI").value = results.rows.item(0)['description'];
 	document.getElementById("DateUI").value = results.rows.item(0)['duedate'];
 	document.getElementById("ClassUI").value = results.rows.item(0)['course'];
-}
 	
-
+}
