@@ -75,3 +75,4 @@ document.getElementById("DescriptionUI").value = results.rows.item(0)['descripti
 	document.getElementById("ClassUI").value = results.rows.item(0)['course'];
 	
 }
+
