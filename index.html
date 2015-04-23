@@ -5,17 +5,16 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="msapplication-tap-highlight" content="no"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/index.css"/>
-    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
-	<link rel="stylesheet"  href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" /> 
-	<link rel="stylesheet" href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.datepicker.css" />
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-git.css" /> 
     <script src="js/jquery.min.js"></script>
-    <script src="https://rawgithub.com/jquery/jquery-ui/1-10-stable/ui/jquery.ui.datepicker.js"></script>
+    <script src="js/jquery.ui.datepicker.js"></script>
 	<script src="js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.js"></script>
+    <script src="js/jquery.mobile.datepicker.js"></script>
 	<!--<script src="phonegap.js"></script>-->
 	<script src="js/index.js"></script>
-	
     <title>Student HomeWork helper</title>
 </head>
 <body>
@@ -45,13 +44,12 @@
 
     <div role="main" class="ui-content">
         <form>
-            <label for="DateED">Date:</label>
-            <input type="text" data-role="date" id="DateED">
-            <label for="DescriptionED">Description:</label>
-            <input type="text" id="DescriptionED" value="">
             
-
-
+			<label for="DateED">Date:</label>
+            <input type="text" data-role="date" id="DateED" data-inline="true">
+			
+			<label for="DescriptionED">Description:</label>
+            <input type="text" id="DescriptionED" value="">
             <label for="select-choice-a" class="select">Class</label>
             <select name="select-choice-a" id="select-choice-a" data-native-menu="true">  
                 <option value="Math">Math</option>   
@@ -79,11 +77,9 @@
         </form>
 		
 		
-		
-		
-        <a href="#home" class="ui-btn" onClick="loadDB();">submit</a>
+        <a href="#home" class="ui-btn" onClick="">submit</a>
     </div>
-
+			
 </div>
 
 <!--add event page end-->
@@ -238,6 +234,7 @@ document.getElementById("demo").innerHTML = new Date().toDateString();
 <script src="js/index.js"></script>
 
 </body>
-<div id="testpage" data-role="page">
-    <div role="main" class="ui-content">
-</html>
+
+
+	
+	</html>
