@@ -27,7 +27,7 @@ function txSuccess() {
    // console.log("Success");
 }
 
-function saveInfo() {
+function writeInfo() {
     db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	//console.log("opens database");
     
@@ -44,8 +44,8 @@ function saveFaveDb(tx) {
     var description =  $("#DescriptionED").val();
     var duedate =  $("#DateED").val();
 	var course = "math";
-	console.log(description);
-	console.log(duedate);
+	//console.log(description);
+	//console.log(duedate);
     tx.executeSql("INSERT INTO homework(duedate,course,description) VALUES (?, ?, ?)",[duedate,course,description]);
 }
 
@@ -54,7 +54,7 @@ function txSuccessFave() {
 
 }
 
-function checkInfo() {
+function readInfo() {
     db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(checkFaveDb, txError);
 }
@@ -75,4 +75,6 @@ document.getElementById("DescriptionUI").value = results.rows.item(0)['descripti
 	document.getElementById("ClassUI").value = results.rows.item(0)['course'];
 	
 }
-
+$('#home').bind('pageinit', function(event) {
+	readInfo();
+});
