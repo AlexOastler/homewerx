@@ -1,0 +1,7 @@
+.datepicker { 
+	z-index:500; 
+	position:relative;
+}
+#ui-datepicker-div {
+background-color:white;
+}
