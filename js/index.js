@@ -1,9 +1,14 @@
 var db;
 
 $('#mainpage').bind('pageinit', function(event) {
-    //console.log("binds page");
+    console.log("binds page");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
     db.transaction(createDb, txError, txSuccess);
+});
+$( "body" ).on( "pagecontainerchange", function( event, ui ) {
+    console.log("homework");
+	readInfo();
+	
 });
 
 function createDb(tx) {
@@ -37,15 +42,15 @@ function writeInfo() {
 	
 	db.transaction(saveFaveDb, txError, txSuccessFave);
 				
-		
+	readInfo();
 }
 
 function saveFaveDb(tx) {
     var description =  $("#DescriptionED").val();
     var duedate =  $("#DateED").val();
 	var course = "math";
-	//console.log(description);
-	//console.log(duedate);
+	console.log(description);
+	console.log(duedate);
     tx.executeSql("INSERT INTO homework(duedate,course,description) VALUES (?, ?, ?)",[duedate,course,description]);
 }
 
@@ -55,6 +60,7 @@ function txSuccessFave() {
 }
 
 function readInfo() {
+    
     db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(checkFaveDb, txError);
 }
@@ -65,16 +71,28 @@ function checkFaveDb(tx) {
 
 
 function txSuccessCheckFave(tx,results) {
- // console.log("Read success");
-	 
-	 //for (i = 0; i < results.rows.length; i++) { 
+console.log("Read success");
+	$("#homework-table tbody").empty();
+	row = "";
+	for (i = 0; i < results.rows.length; i++) { 
 		//console.log("Item #" + i + " - " + results.rows.item(i)['description']);
-	//}
-document.getElementById("DescriptionUI").value = results.rows.item(0)['description'];
-	document.getElementById("DateUI").value = results.rows.item(0)['duedate'];
-	document.getElementById("ClassUI").value = results.rows.item(0)['course'];
+		row = "<tr>";
+		row += "<td>" + results.rows.item(i)['duedate'] + "</td>";
+		row += "<td>" + results.rows.item(i)['description'] + "</td>";
+		row += "<td>" + results.rows.item(i)['course'] + "</td>";
+		row += "</tr>";
+		
+		$( "#homework-table tbody" ).append( row ); 
+		
+		//<tr>
+        //                <td><input type="text" id="DateUI" readonly><br></td>
+        //                <td><input type="text" id="DescriptionUI" readonly><br></td>
+        //                <td><input type="text" id="ClassUI" readonly><br></td>
+        //</tr>
+	}
+//document.getElementById("DescriptionUI").value = results.rows.item(0)['description'];
+	//document.getElementById("DateUI").value = results.rows.item(0)['duedate'];
+	//document.getElementById("ClassUI").value = results.rows.item(0)['course'];
 	
 }
-$('#home').bind('pageinit', function(event) {
-	readInfo();
-});
+
