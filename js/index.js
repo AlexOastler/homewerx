@@ -3,16 +3,19 @@ var db;
 $('#mainpage').bind('pageinit', function(event) {
     console.log("binds page");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
+	db = window.openDatabase("classes","0.1","GitHub Repo Db", 1000);
     db.transaction(createDb, txError, txSuccess);
 });
-$( "body" ).on( "pagecontainerchange", function( event, ui ) {
-    console.log("homework");
-	readInfo();
-	
+$( "body" ).on( "pagecontainerbeforeshow", function( event, ui ) {
+    if(ui.toPage[0].id == `home`) {
+         readInfo();
+		 console.log ("works");
+    }
 });
-
 function createDb(tx) {
-    tx.executeSql("CREATE TABLE homework(duedate,course,description)");
+    tx.executeSql("CREATE TABLE homework(duedate,course,description)")
+	tx.executeSql("CREATE TABLE classes(class)")
+	
 }
 function resetData() {
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
