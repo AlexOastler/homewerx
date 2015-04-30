@@ -3,10 +3,9 @@ var db;
 $('#mainpage').bind('pageinit', function(event) {
     console.log("binds page");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
-	db = window.openDatabase("classes","0.1","GitHub Repo Db", 1000);
     db.transaction(createDb, txError, txSuccess);
 });
-$( "body" ).on( "pagecontainerbeforeshow", function( event, ui ) {
+$( "body" ).on( "pagecontainerchange", function( event, ui ) {
     if(ui.toPage[0].id == `home`) {
          readInfo();
 		 console.log ("works");
