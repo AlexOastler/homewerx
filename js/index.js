@@ -8,7 +8,7 @@ $('#mainpage').bind('pageinit', function(event) {
 $( "body" ).on( "pagecontainerchange", function( event, ui ) {
     if(ui.toPage[0].id == `home`) {
          readInfo();
-		 console.log ("works");
+		 //console.log ("works");
     }
 });
 function createDb(tx) {
