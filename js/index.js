@@ -1,14 +1,14 @@
 var db;
 
 $('#mainpage').bind('pageinit', function(event) {
-    console.log("binds page");
+    //console.log("binds page");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
     db.transaction(createDb, txError, txSuccess);
 });
 $( "body" ).on( "pagecontainerchange", function( event, ui ) {
     if(ui.toPage[0].id == `home`) {
          readInfo();
-		 //console.log ("works");
+		// console.log ("works");
     }
 });
 function createDb(tx) {
@@ -73,7 +73,7 @@ function checkFaveDb(tx) {
 
 
 function txSuccessCheckFave(tx,results) {
-console.log("Read success");
+//console.log("Read success");
 	$("#homework-table tbody").empty();
 	row = "";
 	for (i = 0; i < results.rows.length; i++) { 
