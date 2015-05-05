@@ -45,7 +45,7 @@
 
     <div role="main" class="ui-content">
         <form>
-            
+			
 			<label for="DateED">Date:</label>
             <input type="text" data-role="date" id="DateED" data-inline="false" class="datepicker">
 			
@@ -65,11 +65,12 @@
                 <option value="Homework">Homework</option>   
                 <option value="Assignments">Assignments</option>    
                 <option value="Tests">Tests</option>
-              
+             
 		</select>
-		<a href="#home" class="ui-btn" onClick="writeInfo();">submit</a>
-        </form>
 		
+		<a href="#home" id="submitbutton" class="ui-btn" onClick="writeInfo();">submit</a>
+        </form>
+	
 		
         
     </div>
@@ -91,7 +92,7 @@ document.getElementById("demo").innerHTML = new Date().toDateString();
 		<div data-role="collapsibleset">
             <div data-role="collapsible" data-collapsed="true">
 				<h3>Homework</h3>
-                <table data-role="table" id="homework-table" data-mode="reflow" class="ui-responsive">
+                <table data-role="table" id="homework-table" data-mode="" class="ui-responsive">
                     <thead>
                     <tr>
                         <th data-priority="1">Due Date</th>
@@ -124,7 +125,7 @@ document.getElementById("demo").innerHTML = new Date().toDateString();
         <div data-role="collapsibleset">
             <div data-role="collapsible" data-collapsed="true">
                 <h3>Assignments</h3>
-                <table data-role="table" id="homework-table" data-mode="reflow" class="ui-responsive">
+                <table data-role="table" id="Assignments-table" data-mode="" class="ui-responsive">
                     <thead>
                     <tr>
                         <th data-priority="1">Description</th>
@@ -134,9 +135,9 @@ document.getElementById("demo").innerHTML = new Date().toDateString();
                     </thead>
                     <tbody>
                     <tr>
-                        <td><input type="text" id="DescriptionUI" readonly><br></td>
-                        <td><input type="text" id="ClassUI" readonly><br></td>
-                        <td><input type="text" id="DateUI" readonly><br></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -156,7 +157,7 @@ document.getElementById("demo").innerHTML = new Date().toDateString();
         <div data-role="collapsibleset">
             <div data-role="collapsible" data-collapsed="true">
                 <h3>Tests</h3>
-                <table data-role="table" id="homework-table" data-mode="reflow" class="ui-responsive">
+                <table data-role="table" id="tests-table" data-mode="" class="ui-responsive">
                     <thead>
                     <tr>
                         <th data-priority="1">Description</th>
@@ -166,9 +167,9 @@ document.getElementById("demo").innerHTML = new Date().toDateString();
                     </thead>
                     <tbody>
                     <tr>
-                        <td><input type="text" id="DescriptionUI" readonly><br></td>
-                        <td><input type="text" id="ClassUI" readonly><br></td>
-                        <td><input type="text" id="DateUI" readonly><br></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td></td>
