@@ -1,20 +1,18 @@
 var db;
 
 $('#mainpage').bind('pageinit', function(event) {
-    //console.log("binds page");
+    console.log("binds page");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
     db.transaction(createDb, txError, txSuccess);
 });
 $( "body" ).on( "pagecontainerchange", function( event, ui ) {
-    if(ui.toPage[0].id == `home`) {
-         readInfo();
-		// console.log ("works");
-    }
-});
-function createDb(tx) {
-    tx.executeSql("CREATE TABLE homework(duedate,course,description)")
-	tx.executeSql("CREATE TABLE classes(class)")
+    console.log("homework");
+	readInfo();
 	
+});
+
+function createDb(tx) {
+    tx.executeSql("CREATE TABLE homework(duedate,course,description)");
 }
 function resetData() {
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
@@ -73,7 +71,7 @@ function checkFaveDb(tx) {
 
 
 function txSuccessCheckFave(tx,results) {
-//console.log("Read success");
+console.log("Read success");
 	$("#homework-table tbody").empty();
 	row = "";
 	for (i = 0; i < results.rows.length; i++) { 
@@ -97,4 +95,3 @@ function txSuccessCheckFave(tx,results) {
 	//document.getElementById("ClassUI").value = results.rows.item(0)['course'];
 	
 }
-
