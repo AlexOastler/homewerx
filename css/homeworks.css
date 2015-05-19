@@ -15,16 +15,7 @@ font-size:12px;
 #null {
 font-size:12px;
 }
-#submitbutton{
-background-color:white;
-color:black;
-padding: 1rem;
- position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-}
+
 #backbutton {
 background-color:white;
 color:black;

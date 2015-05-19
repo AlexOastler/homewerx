@@ -37,22 +37,15 @@
 <!--add event page start-->
 
 <div id="addtask" data-role="page">
-    <div data-role="header">
-        <h1>Add Event</h1>
-
-    </div>
-    <!-- /header -->
-
     <div role="main" class="ui-content">
+	 <a href="#mainpage" class="ui-btn">back</a>
         <form>
-			<a href="#mainpage" id="submitbutton" class="ui-btn" onClick="writeInfo();"><b>back</b></a>
 			<label for="DateED">Date:</label>
             <input type="text" data-role="date" id="DateED" data-inline="false" class="datepicker">
-			
 			<label for="DescriptionED">Description:</label>
             <input type="text" id="DescriptionED" value="">
             <label for="select-choice-a" class="select">Class</label>
-            <select name="select-choice-a" id="Classes" data-native-menu="true">  
+            <select name="select-choice-a" id="ClassesED" data-native-menu="true">  
                 <option value="Math">Math</option>   
                 <option value="Science">Science</option>    
                 <option value="English">English</option>
@@ -60,15 +53,19 @@
                 <option value="Geography">Geography</option>
                 <option value="Civics">Civics</option>
 		</select>
-		  <label for="select-choice-a" class="select">Category</label>
-            <select name="select-choice-a" id="Category" data-native-menu="true">  
-                <option value="Homework">Homework</option>   
+<p>Select a category</p> 
+<select name="select-choice-a" id="categoryED" data-native-menu="true">  
+                <option value="HomeWork">HomeWork</option>   
                 <option value="Assignments">Assignments</option>    
                 <option value="Tests">Tests</option>
-             
 		</select>
+
+<a href="#home" id="submitbutton" class="ui-btn" onClick="writeInfo();"><b>Submit</b></a>
+
+
+
+
 		
-		<a href="#home" id="submitbutton" class="ui-btn" onClick="writeInfo();"><b>submit</b></a>
 		
         </form>
 	
@@ -84,11 +81,12 @@
 <div id="home" data-role="page">
     <div role="main" class="ui-content">
 	<h5> todays date is...</h5>
-	<h3 id="demo"></h3>
+	<h3 id="Date"></h3>
 
 <script>
-document.getElementById("demo").innerHTML = new Date().toDateString();
+document.getElementById("Date").innerHTML = new Date().toDateString();
 </script>
+
 		
 		<div data-role="collapsibleset">
             <div data-role="collapsible" data-collapsed="true">
@@ -99,14 +97,15 @@ document.getElementById("demo").innerHTML = new Date().toDateString();
                         <th data-priority="1">Due Date</th>
                         <th data-priority="2">Description</th>
                         <th data-priority="3">Class</th>
+						<th data-priority="3">category</th>
 						
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><input type="text" id="DateUI" readonly><br></td>
-                        <td><input type="text" id="DescriptionUI" readonly><br></td>
-                        <td><input type="text" id="ClassUI" readonly><br></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td></td>
