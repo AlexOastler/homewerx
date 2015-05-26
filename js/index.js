@@ -3,7 +3,6 @@ var db;
 $('#mainpage').bind('pageinit', function(event) {
     console.log("binds page");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
-	//db = window.openDatabase("assignmentsdb","0.1","GitHub Repo Db", 1000);
     db.transaction(createDb, txError, txSuccess);
 });
 $( "body" ).on( "pagecontainerchange", function( event, ui ) {
@@ -12,55 +11,68 @@ $( "body" ).on( "pagecontainerchange", function( event, ui ) {
 });
 
 function createDb(tx) {
-    tx.executeSql("CREATE TABLE homework(duedate,course,description,category)");
-//	tx.executeSql("CREATE TABLE assignments(duedate,course,description)");
+	tx.executeSql("CREATE TABLE if not exists Classes(Classes)");
+    tx.executeSql("CREATE TABLE if not exists homework(duedate,course,description,Category)");
+	console.log("creates DB");
+	
 }
 function resetData() {
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
-	//db = window.openDatabase("assignmentsdb","0.1","GitHub Repo Db", 1000);
     db.transaction(resetDb, txError, txSuccess);
 	
 	}
 function resetDb(tx) {
-tx.executeSql("DROP TABLE IF EXISTS homework");
-//tx.executeSql("DROP TABLE IF EXISTS assignments");
-tx.executeSql("CREATE TABLE homework(duedate,course,description,category)");
-//tx.executeSql("CREATE TABLE assignments(duedate,course,description)");
+	tx.executeSql("DROP TABLE IF EXISTS homework");
+	tx.executeSql("DROP TABLE IF EXISTS Classes");
+	tx.executeSql("CREATE TABLE homework(duedate,course,description,Category)");
+	tx.executeSql("CREATE TABLE Classes(Classes)");
+
+
 }
 function txError(error) {
-    //console.log(error);
-    //console.log("Database error: " + error);
+    console.log(error);
+    console.log("Database error: " + error);
 }
 
 function txSuccess() {
-   // console.log("Success");
+    console.log("Success");
 }
 
 function writeInfo() {
     db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
-	//db = window.openDatabase("assignmentsdb","0.1","GitHub Repo Db", 1000);
-	//console.log("opens database");
-    
-	
-    //document.getElementById("DescriptionUI").value = document.getElementById("DescriptionED").value
-	//document.getElementById("DateUI").value = document.getElementById("DateED").value
-	
-	db.transaction(saveFaveDb, txError, txSuccessFave);
+	console.log("opens database");
+	db.transaction(saveHomework, txError, txSuccessFave);
 				
 	readInfo();
 }
 
-function saveFaveDb(tx) {
+function writeClasses() {
+    db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
+
+
+db.transaction(saveClasses, txError, txSuccessFave);
+}
+
+function saveClasses(tx) {
+    var Classes =  $("#AddclassED").val();
+	console.log("Class is " + Classes);
+	tx.executeSql("INSERT INTO Classes(Classes) VALUES (?)",[Classes]);
+	
+}
+
+
+function saveHomework(tx) {
     var description =  $("#DescriptionED").val();
     var duedate =  $("#DateED").val();
 	var course = $("#ClassesED").val();
-	var category = $("#categoryED").val();
+	var Category = $("#CategoryED").val();
 	console.log("description is " + description);
 	console.log("duedate is " + duedate);
 	console.log("course is " + course);
-	console.log("category is " + category);
-    tx.executeSql("INSERT INTO homework(duedate,course,description,category) VALUES (?, ?, ?, ?)",[duedate,course,description,category]);
+	console.log("Category is " + Category);
+    tx.executeSql("INSERT INTO homework(duedate,course,description,Category) VALUES (?, ?, ?, ?)",[duedate,course,description,Category]);
 }
+
 
 function txSuccessFave() {
     //console.log("Save success");
@@ -73,34 +85,56 @@ function readInfo() {
 	db.transaction(checkHomework, txError);
 }
 
-function checkHomework(tx) {
-    tx.executeSql("SELECT * FROM homework",  [], txSuccessHomework , txError);
+function checkHomework(tx) {   
+
+   tx.executeSql("SELECT * FROM homework",  [], loadHomework , loadClasses , txError);
+}
+function loadClasses(tx,results) {
+$("#classesTab li").empty();
+for (i = 0; i < results.rows.length; i++) { 
+			row+="<td>" + results.rows.item(i)['Classes'] + "</td>";
+			$("#classesTab li").append( row );
 }
 
-
-function txSuccessHomework(tx,results) {
+function loadHomework(tx,results) {
 console.log("Read success");
 	$("#homework-table tbody").empty();
+	$("#Assignments-table tbody").empty();
+	$("#tests-table tbody").empty();
+	
 	row = "";
 	for (i = 0; i < results.rows.length; i++) { 
-		//console.log("Item #" + i + " - " + results.rows.item(i)['description']);
 		row = "<tr>";
 		row += "<td>" + results.rows.item(i)['duedate'] + "</td>";
 		row += "<td>" + results.rows.item(i)['description'] + "</td>";
 		row += "<td>" + results.rows.item(i)['course'] + "</td>";
-		row += "<td>" + results.rows.item(i)['category'] + "</td>";
+		row += "<td>" + results.rows.item(i)['Category'] + "</td>";
 		row += "</tr>";
+		$("#homework-table tbody").append( row );
 		
-		$( "#homework-table tbody" ).append( row ); 
+			for (i = 0; i < results.rows.length; i++) { 
+			row+="<td>" + results.rows.item(i)['Classes'] + "</td>";
+			$("#classesTab li").append( row );
+				
+}
+
+
+switch (Category) {
+    case "Homework":
+        day = "#homework-table tbody";
+        break;
+    case "Assignments":
+        day = "#Assignments-table tbody";
+        break;
+    case "tests":
+        day = "#tests-table tbody"; 
+		break;
+}
 		
-		//<tr>
-        //                <td><input type="text" id="DateUI" readonly><br></td>
-        //                <td><input type="text" id="DescriptionUI" readonly><br></td>
-        //                <td><input type="text" id="ClassUI" readonly><br></td>
-        //</tr>
-	}
-//document.getElementById("DescriptionUI").value = results.rows.item(0)['description'];
-	//document.getElementById("DateUI").value = results.rows.item(0)['duedate'];
-	//document.getElementById("ClassUI").value = results.rows.item(0)['course'];
-	
+		console.log(day);
+$(day).append( row );
+	 
+
+}
+}
 }

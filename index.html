@@ -54,7 +54,7 @@
                 <option value="Civics">Civics</option>
 		</select>
 <p>Select a category</p> 
-<select name="select-choice-a" id="categoryED" data-native-menu="true">  
+<select name="select-choice-a" id="CategoryED" data-native-menu="true">  
                 <option value="HomeWork">HomeWork</option>   
                 <option value="Assignments">Assignments</option>    
                 <option value="Tests">Tests</option>
@@ -97,8 +97,6 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
                         <th data-priority="1">Due Date</th>
                         <th data-priority="2">Description</th>
                         <th data-priority="3">Class</th>
-						<th data-priority="3">category</th>
-						
                     </tr>
                     </thead>
                     <tbody>
@@ -128,9 +126,9 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
                 <table data-role="table" id="Assignments-table" data-mode="" class="ui-responsive">
                     <thead>
                     <tr>
-                        <th data-priority="1">Description</th>
-                        <th data-priority="2">Class</th>
-                        <th data-priority="3">Due Date</th>
+                        <th data-priority="1">Due Date</th>
+                        <th data-priority="2">Description</th>
+                        <th data-priority="3">Class</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -160,9 +158,10 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
                 <table data-role="table" id="tests-table" data-mode="" class="ui-responsive">
                     <thead>
                     <tr>
-                        <th data-priority="1">Description</th>
-                        <th data-priority="2">Class</th>
-                        <th data-priority="3">Due Date</th>
+                        <th data-priority="1">Due Date</th>
+                        <th data-priority="2">Description</th>
+                        <th data-priority="3">Class</th>
+						
                     </tr>
                     </thead>
                     <tbody>
@@ -200,7 +199,7 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
     <div role="main" class="ui-content">
         Input Class Here
         <input type="text" id="AddclassED"><br>
-		<a href="#home" class="ui-btn" onClick="AddClass();">Add class</a>
+		<a href="#home" class="ui-btn" onClick="writeClasses();">Add class</a>
         <a href="#mainpage" class="ui-btn">Home</a>
     </div>
 </div>
@@ -211,15 +210,10 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
 
 
 <div id="manageclass" data-role="page">
-    <div role="main" class="ui-content">
+    <div role="main" class="ui-content" id ="classesTab">
         <ul data-role="listview" data-filter="true" data-filter-placeholder="Search classes..." data-inset="true">
                 
             <li><a href="#">Math</a></li>    
-            <li><a href="#">Science</a></li>
-            <li><a href="#">English</a></li>
-            <li><a href="#">Music</a></li>
-            <li><a href="#">Geography</a></li>  
-            <li><a href="#">Civics</a></li>
             <a href="#mainpage" class="ui-btn">Home</a>
         </ul>
     </div>
