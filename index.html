@@ -199,7 +199,7 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
     <div role="main" class="ui-content">
         Input Class Here
         <input type="text" id="AddclassED"><br>
-		<a href="#home" class="ui-btn" onClick="writeClasses();">Add class</a>
+		<a href="#home" class="ui-btn" onClick=>Add class</a>
         <a href="#mainpage" class="ui-btn">Home</a>
     </div>
 </div>
@@ -210,14 +210,19 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
 
 
 <div id="manageclass" data-role="page">
-    <div role="main" class="ui-content" id ="classesTab">
-        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search classes..." data-inset="true">
-                
-            <li><a href="#">Math</a></li>    
-            <a href="#mainpage" class="ui-btn">Home</a>
-        </ul>
-    </div>
-</div>
+    <div data-role="collapsibleset">
+            <div data-role="collapsible" data-collapsed="true">
+				<h3>classes</h3>
+                <table data-role="table" id="classesTab" data-mode="" class="ui-responsive">
+                    <thead>
+                    <tr>
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+            </div>
+        </div>
 <!--manange class page end-->
 
 <script src="js/index.js"></script>
