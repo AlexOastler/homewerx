@@ -7,13 +7,13 @@ $('#mainpage').bind('pageinit', function(event) {
 });
 $( "body" ).on( "pagecontainerchange", function( event, ui ) { 
 	readInfo();
-    console.log("Reads");
+    console.log("Page Changing triggers main read function");
 
 	
 });
 
 function loadHomework(tx,results) {
-console.log("Read success");
+console.log("Reading from homework table");
 	$("#homework-table tbody").empty();
 	$("#Assignments-table tbody").empty();
 	$("#tests-table tbody").empty();
@@ -28,6 +28,7 @@ console.log("Read success");
 		row += "</tr>";
 		$("#homework-table tbody").append( row );
 		
+		
 			}	
 }
 
@@ -40,6 +41,7 @@ function readInfo() {
     
     db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(checkHomework, txError);
+
 }
 
 function createDb(tx) {
@@ -67,25 +69,25 @@ function txError(error) {
 }
 
 function txSuccess() {
-    console.log("Success");
+    console.log("transaction success");
 }
 function writeClass() {
  db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	console.log("opens database");
-	db.transaction(saveClasses, txError, txSuccessFave);
+	db.transaction(loadClasses, txError, txSuccessFave);
 				
 	
 	
-function writeInfo() {
+function writeHomework() {
     db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	console.log("opens database");
-	db.transaction(saveHomework, txError, txSuccessFave);
+	db.transaction(loadHomework, txError, txSuccessFave);
 				
 	
 }
 
 
-function saveClasses(tx) {
+function loadClasses(tx) {
     var Classes =  $("#AddclassED").val();
 	console.log("class is " + Classes);
 	
@@ -93,7 +95,7 @@ function saveClasses(tx) {
 }
 
 
-function saveHomework(tx) {
+function loadHomework(tx) {
     var description =  $("#DescriptionED").val();
     var duedate =  $("#DateED").val();
 	var course = $("#ClassesED").val();
@@ -115,8 +117,8 @@ function txSuccessFave() {
 
 
 
-function load(tx,results) {
-console.log("loads");
+function loadClasses(tx,results) {
+console.log("loads Classes");
 $("#classesTab tbody").empty();
 console.log("emptys");
 row = "";
