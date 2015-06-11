@@ -10,8 +10,8 @@ function loadHomework(tx,results) {
 	for (i = 0; i < results.rows.length; i++) { 
 		row = "<tr>";
 		row += "<td>" + results.rows.item(i)['duedate'] + "</td>";
+		row += "<td>" + results.rows.item(i)['classname'] + "</td>";
 		row += "<td>" + results.rows.item(i)['description'] + "</td>";
-		row += "<td>" + results.rows.item(i)['course'] + "</td>";
 		row += "<td>" + results.rows.item(i)['Category'] + "</td>";
 		row += "</tr>";
 		$("#homework-table tbody").append( row );
@@ -26,7 +26,7 @@ $("#classesTab tbody").empty();
 row = "";
 for (i = 0; i < results.rows.length; i++) { 
 			row = "<tr>";
-			row += "<td>" + "test" + "</td>";
+			row += "<td>" + results.rows.item(i)['classname'] + "</td>";
 			row += "</tr>";
 			$("#classesTab tbody").append( row );
 			//console.log(results.rows.item(i)['classname']);
@@ -34,6 +34,19 @@ for (i = 0; i < results.rows.length; i++) {
 console.log("loads Classes from table");
 			}
 
+			
+function loadClassnameoptions(tx,results) {
+$("#ClassesED").empty();
+row = "";
+for (i = 0; i < results.rows.length; i++) { 
+			row = "<option>";
+			row += results.rows.item(i)['classname'];
+			row += "</option>";
+			$("#ClassesED").append( row );
+			//console.log(results.rows.item(i)['classname']);
+			}
+console.log("loads class options from table");
+			}
 
 function checkHomework(tx) {   
 
@@ -45,15 +58,21 @@ function checkClasses(tx) {
    tx.executeSql("SELECT * FROM classes",  [] , loadClasses , txError);
 }
 
+function checkClassOptions(tx) {   
+
+   tx.executeSql("SELECT * FROM classes",  [] , loadClassnameoptions , txError);
+}
+
 function readTables() {
     
     db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(checkHomework, txError);
 	db.transaction(checkClasses, txError);
+	db.transaction(checkClassOptions, txError);
 }
 
 function createDb(tx) {
-    tx.executeSql("CREATE TABLE if not exists homework(duedate,course,description,category,classname)");
+    tx.executeSql("CREATE TABLE if not exists homework(duedate,classname,category,description)");
 	 tx.executeSql("CREATE TABLE if not exists classes(classname)");
 	console.log("creates DB");
 	
@@ -65,7 +84,7 @@ function resetData() {
 	}
 function resetDb(tx) {
 	tx.executeSql("DROP TABLE IF EXISTS homework");
-	tx.executeSql("CREATE TABLE homework(duedate,course,description,Category)");
+	tx.executeSql("CREATE TABLE homework(duedate,classname,category,description)");
 	tx.executeSql("DROP TABLE IF EXISTS classes");
 	tx.executeSql("CREATE TABLE classes(classname)"); 
 
@@ -106,15 +125,13 @@ function saveClasses(tx) {
 function saveHomework(tx) {
     var description =  $("#DescriptionED").val();
     var duedate =  $("#DateED").val();
-	var course = $("#ClassesED").val();
+	var classname = $("#ClassesED").val();
 	var category = $("#CategoryED").val();
-	var classname =  $("#AddclassED").val();
 	console.log("description is " + description);
 	console.log("duedate is " + duedate);
-	console.log("course is " + course);
+	console.log("class is " + classname);
 	console.log("Category is " + category);
-	console.log("Class is " + classname);
-    tx.executeSql("INSERT INTO homework(duedate,course,description,category,classname) VALUES (?, ?, ?, ?, ?)",[duedate,course,description,category,classname]);
+    tx.executeSql("INSERT INTO homework(duedate,classname,category,description) VALUES (?, ?, ?, ?)",[duedate,classname,category,description]);
 	console.log("saves homework into table");
 }
 
