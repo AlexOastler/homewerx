@@ -12,8 +12,8 @@ function loadHomework(tx,results) {
 		row += "<td>" + results.rows.item(i)['duedate'] + "</td>";
 		row += "<td>" + results.rows.item(i)['classname'] + "</td>";
 		row += "<td>" + results.rows.item(i)['description'] + "</td>";
-		//row += "<td>" + results.rows.item(i)['Category'] + "</td>";
-		//row += "<td>" + <a class="button" href="#"></a> +"</td>";
+		row += "<td>  <a href='#mainpage' class='ui-btn ui-icon-check ui-btn-icon-notext ui-corner-all ui-btn-inline' ></a> </td>";
+		row += "<td>  <a href='#mainpage' class='ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all ui-btn-inline' ></a> </td>";
 		row += "</tr>";
 		$("#homework-table tbody").append( row );
 		
