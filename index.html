@@ -17,6 +17,7 @@
 	<!--<script src="phonegap.js"></script>-->
 	<script src="js/index.js"></script>
     <title>Student HomeWork helper</title>
+	
 </head>
 <body>
 
@@ -24,11 +25,17 @@
 
 <div id="mainpage" data-role="page">
     <div role="main" class="ui-content">
+		<p></p>
         <a href="#addtask" class="ui-btn">Add Event</a>
+		<p></p>
         <a href="#home" class="ui-btn">View Homework</a>
-        <a href="#class" class="ui-btn">Add Class</a>
+		<p></p>
         <a href="#manageclass" class="ui-btn">Manage Classes</a>
-        <a href="" class="ui-btn" onClick="resetData();">reset</a>
+		<p></p>
+        <a href="#yesno" class="ui-btn" onClick="resetData();">reset</a>
+		<p></p>
+		
+		
 
     </div>
 </div>
@@ -46,7 +53,7 @@
             <input type="text" id="DescriptionED" value="">
             <label for="select-choice-a" class="select">Class</label>
             <select name="select-choice-a" id="ClassesED" data-native-menu="true">  
-               
+              
 		</select>
 <p>Select a category</p> 
 <select name="select-choice-a" id="CategoryED" data-native-menu="true">  
@@ -192,10 +199,8 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
 
 <div id="class" data-role="page">
     <div role="main" class="ui-content">
-        Input Class Here
-        <input type="text" id="AddclassED"><br>
-		<a href="#home" class="ui-btn" onClick="writeClass();">Add class</a>
-        <a href="#mainpage" class="ui-btn">Home</a>
+      
+      
     </div>
 </div>
 
@@ -205,6 +210,12 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
 
 
 <div id="manageclass" data-role="page">
+       <p></p>
+	   Input Class Here
+	 <input type="text" id="AddclassED"><br>
+		<a href="#home" class="ui-btn" onClick="writeClass();">Add class</a>
+        <a href="#mainpage" class="ui-btn">Home</a>
+
    <div data-role="collapsibleset">
             <div data-role="collapsible" data-collapsed="true">
                 <h3>class</h3>
@@ -232,6 +243,14 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
         </div>
 		</div>
 <!--manange class page end-->
+
+<!--yes/no page start-->
+<div id="yesno" data-role="page">
+<p></p>
+<h2>Are You Sure?</h2>
+<a href="#home" class="ui-btn" onClick="resetData();">Yes</a>
+<a href="#home" class="ui-btn" onClick="">No</a>
+<!--yes/no page end-->
 
 <script src="js/index.js"></script>
 

@@ -12,7 +12,8 @@ function loadHomework(tx,results) {
 		row += "<td>" + results.rows.item(i)['duedate'] + "</td>";
 		row += "<td>" + results.rows.item(i)['classname'] + "</td>";
 		row += "<td>" + results.rows.item(i)['description'] + "</td>";
-		row += "<td>" + results.rows.item(i)['Category'] + "</td>";
+		//row += "<td>" + results.rows.item(i)['Category'] + "</td>";
+		//row += "<td>" + <a class="button" href="#"></a> +"</td>";
 		row += "</tr>";
 		$("#homework-table tbody").append( row );
 		
@@ -23,7 +24,7 @@ function loadHomework(tx,results) {
 function loadClasses(tx,results) {
 $("#classesTab tbody").empty();
 //console.log(results.rows.length);
-row = "";
+
 for (i = 0; i < results.rows.length; i++) { 
 			row = "<tr>";
 			row += "<td>" + results.rows.item(i)['classname'] + "</td>";
@@ -69,6 +70,9 @@ function readTables() {
 	db.transaction(checkHomework, txError);
 	db.transaction(checkClasses, txError);
 	db.transaction(checkClassOptions, txError);
+	$('#DescriptionED').val('');
+	$('#DateED').val('');
+	$('#AddclassED').val('');
 }
 
 function createDb(tx) {
