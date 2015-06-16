@@ -14,3 +14,14 @@ background-color:white;
    height:27px;
 text-align: center;   
 }
+.overdue{
+color:red;
+}
+
+.notoverdue{
+color:green;
+}
+
+.warning{
+color:yellow;
+}

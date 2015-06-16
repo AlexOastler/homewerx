@@ -8,11 +8,34 @@ function loadHomework(tx,results) {
 	
 	row = "";
 	for (i = 0; i < results.rows.length; i++) { 
-		row = "<tr>";
+		
+		
+		homeworkdate = new Date(results.rows.item(i)['duedate']);
+		currentdate = new Date();
+		warningdate = new Date();
+		var daystoadd = 4;
+		warningdate.setDate(warningdate.getDate() + daystoadd);
+	
+		
+		console.log("homework date " + homeworkdate);
+		console.log("current date " + currentdate);
+		console.log("warning date " + warningdate);
+	
+		if(currentdate >= homeworkdate ) { 
+		row = "<tr class='overdue'> ";
+		}else if (warningdate > homeworkdate ) {
+		row ="<tr class='warning'> ";
+		}else{
+		row = "<tr class ='notoverdue'> ";
+		}
+		
+		
+		
+		
 		row += "<td>" + results.rows.item(i)['duedate'] + "</td>";
 		row += "<td>" + results.rows.item(i)['classname'] + "</td>";
 		row += "<td>" + results.rows.item(i)['description'] + "</td>";
-		row += "<td>  <a href='#mainpage' id='tab-button'(i) class='ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all ui-btn-inline' ></a> </td>";
+		row += "<td>  <a href='#mainpage' id='tab-button' class='ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all ui-btn-inline' ></a> </td>";
 		row += "</tr>";
 
 		type = "";
@@ -29,14 +52,19 @@ function loadHomework(tx,results) {
 			default:
 			type = "#homework-table tbody";
 		}
-	console.log("type is " + type);
+	//console.log("type is " + type);
 	$(type).append( row );
-	}		
+	
+		
+		
+	}
+	console.log("Read homework success");
+}		
 
 		
 		
-	console.log("Read homework success");
-}
+	
+
 
 
 function loadClasses(tx,results) {
