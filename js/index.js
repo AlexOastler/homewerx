@@ -12,8 +12,8 @@ function loadHomework(tx,results) {
 		row += "<td>" + results.rows.item(i)['duedate'] + "</td>";
 		row += "<td>" + results.rows.item(i)['classname'] + "</td>";
 		row += "<td>" + results.rows.item(i)['description'] + "</td>";
-		row += "<td>  <a href='#mainpage' class='ui-btn ui-icon-check ui-btn-icon-notext ui-corner-all ui-btn-inline' ></a> </td>";
-		row += "<td>  <a href='#mainpage' class='ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all ui-btn-inline' ></a> </td>";
+		row += "<td>  <a href='#mainpage' class='ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all ui-btn-inline' ></a> </td>";
+		
 		row += "</tr>";
 		$("#homework-table tbody").append( row );
 		
@@ -110,9 +110,14 @@ function writeClass() {
 	}
 	
 function writeHomework() {
-    db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
+	if ($("#ClassesED").val() === null) {
+	alert("not working");
+	}else{
+	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(saveHomework, txError, txSuccessFave);
 	console.log("writes homework");
+
+	}
 	
 }
 
@@ -137,15 +142,14 @@ function saveHomework(tx) {
 	console.log("Category is " + category);
     tx.executeSql("INSERT INTO homework(duedate,classname,category,description) VALUES (?, ?, ?, ?)",[duedate,classname,category,description]);
 	console.log("saves homework into table");
-}
+	
+	}
 
 
 function txSuccessFave() {
     console.log("Save success");
 
 }
-
-
 
 
 
