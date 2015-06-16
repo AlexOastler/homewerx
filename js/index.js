@@ -110,12 +110,14 @@ function writeClass() {
 	}
 	
 function writeHomework() {
+	event.preventDefault();
 	if ($("#ClassesED").val() === null) {
 	alert("not working");
 	}else{
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(saveHomework, txError, txSuccessFave);
 	console.log("writes homework");
+	$.mobile.navigate( "#home" );
 
 	}
 	
