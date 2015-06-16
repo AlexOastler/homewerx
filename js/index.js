@@ -12,14 +12,32 @@ function loadHomework(tx,results) {
 		row += "<td>" + results.rows.item(i)['duedate'] + "</td>";
 		row += "<td>" + results.rows.item(i)['classname'] + "</td>";
 		row += "<td>" + results.rows.item(i)['description'] + "</td>";
-		row += "<td>  <a href='#mainpage' class='ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all ui-btn-inline' ></a> </td>";
-		
+		row += "<td>  <a href='#mainpage' id='tab-button'(i) class='ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all ui-btn-inline' ></a> </td>";
 		row += "</tr>";
-		$("#homework-table tbody").append( row );
+
+		type = "";
+		switch (results.rows.item(i)['category']) {
+			case "HomeWork":
+			type = "#homework-table tbody";
+			break;
+			case "Assignments":
+			type = "#Assignments-table tbody";
+			break;
+			case "Tests":
+			type = "#tests-table tbody"; 
+			break;
+			default:
+			type = "#homework-table tbody";
+		}
+	console.log("type is " + type);
+	$(type).append( row );
+	}		
+
 		
-		console.log("Read homework success");
-			}	
+		
+	console.log("Read homework success");
 }
+
 
 function loadClasses(tx,results) {
 $("#classesTab tbody").empty();
@@ -175,22 +193,6 @@ $( document ).ready(function() {
 });
 
 
-
-//switch (Category) {
-  //  case "Homework":
-    //    day = "#homework-table tbody";
-      //  break;
-    //case "Assignments":
-      //  day = "#Assignments-table tbody";
-        //break;
-    //case "tests":
-      //  day = "#tests-table tbody"; 
-		//break;
-//}
-		
-	//	console.log(day);
-//$(day).append( row );
-	 
 
 
 
