@@ -175,9 +175,9 @@ function writeHomework() {
 	}else if ($("#DescriptionED").val() === "") {
 	sweetAlert("Oops...", "You left a field blank", "error");
 	}else if ($("#ClassesED").val() === null) {
-	sweetAlert("Oops...", "You left a field blank", "error");
+	sweetAlert("Oops...", "You need to add a class from the Add Class tab on the main screen.", "error");
 	}else if ($("#ClassesED").val() === "") {
-	sweetAlert("Oops...", "You left a field blank", "error");
+	sweetAlert("Oops...", "You need to add a class from the Add Class tab on the main screen.", "error");
 	}else{
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(saveHomework, txError, txSuccessFave);
