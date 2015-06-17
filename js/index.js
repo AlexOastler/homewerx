@@ -153,22 +153,31 @@ function txSuccess() {
 function writeClass() {
 	event.preventDefault();
 	if ($("#AddclassED").val() === null) {
-	alert("not working");
+	sweetAlert("Oops...", "You left a field blank", "error");
 	}else if ($("#AddclassED").val() === "") {
-	alert("not working");
+	sweetAlert("Oops...", "You left a field blank", "error");
 	}else{
     db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(saveClasses, txError, txSuccessFave);
 	console.log("writes classes");
+	$.mobile.navigate( "#home" );
 		}		
 	}
 	
 function writeHomework() {
 	event.preventDefault();
-	if ($("#ClassesED").val() === null) {
-	sweetAlert("Oops...", "Something went wrong!", "error");
+	if ($("#DateED").val() === null) {
+	sweetAlert("Oops...", "You left a field blank", "error");
+	}else if ($("#DateED").val() === "") {
+	sweetAlert("Oops...", "You left a field blank", "error");
+	}else if ($("#DescriptionED").val() === null) {
+	sweetAlert("Oops...", "You left a field blank", "error");
+	}else if ($("#DescriptionED").val() === "") {
+	sweetAlert("Oops...", "You left a field blank", "error");
+	}else if ($("#ClassesED").val() === null) {
+	sweetAlert("Oops...", "You left a field blank", "error");
 	}else if ($("#ClassesED").val() === "") {
-	sweetAlert("Oops...", "Something went wrong!", "error");
+	sweetAlert("Oops...", "You left a field blank", "error");
 	}else{
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(saveHomework, txError, txSuccessFave);
