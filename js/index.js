@@ -151,18 +151,24 @@ function txSuccess() {
     console.log("transaction success");
 }
 function writeClass() {
-	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
+	event.preventDefault();
+	if ($("#AddclassED").val() === null) {
+	alert("not working");
+	}else if ($("#AddclassED").val() === "") {
+	alert("not working");
+	}else{
+    db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(saveClasses, txError, txSuccessFave);
 	console.log("writes classes");
-				
+		}		
 	}
 	
 function writeHomework() {
 	event.preventDefault();
 	if ($("#ClassesED").val() === null) {
-	alert("not working");
+	sweetAlert("Oops...", "Something went wrong!", "error");
 	}else if ($("#ClassesED").val() === "") {
-	alert("not working");
+	sweetAlert("Oops...", "Something went wrong!", "error");
 	}else{
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(saveHomework, txError, txSuccessFave);

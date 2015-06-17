@@ -10,10 +10,12 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css"/>
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-git.css" /> 
 	<link rel="stylesheet" type="text/css" href="css/homeworks.css"/>
+	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.ui.datepicker.js"></script>
 	<script src="js/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/jquery.mobile.datepicker.js"></script>
+	<script src="js/sweetalert.min.js"></script>
 	<!--<script src="phonegap.js"></script>-->
 	<script src="js/index.js"></script>
     <title>Student HomeWork helper</title>
@@ -23,16 +25,21 @@
 
 <!--home page start -->
 
+
+
 <div id="mainpage" data-role="page">
     <div role="main" class="ui-content">
+	<div data-role="header"> 
+	<h1>Main Page</h1> 
+</div>
 		<p></p>
-        <a h1 href="#addtask" class="ui-btn">Add Event</a>
+        <a h1 href="#addtask" class="ui-btn">Add HomeWork</a>
 		<p></p>
-        <a h2 href="#home" class="ui-btn">View Homework</a>
+        <a h2 href="#home" class="ui-btn">View HomeWork</a>
 		<p></p>
-        <a h3 href="#manageclass" class="ui-btn">Manage Classes</a>
+        <a h3 href="#manageclass" class="ui-btn">Add A Class</a>
 		<p></p>
-        <a h4 href="#yesno" class="ui-btn" onClick="resetData();">reset</a>
+        <a h4 href="#yesno" class="ui-btn" onClick="resetData();">Reset</a>
 		<p></p>
 		
 		
@@ -45,7 +52,12 @@
 
 <div id="addtask" data-role="page">
     <div role="main" class="ui-content">
-	 <a href="#mainpage" class="ui-btn">back</a>
+	
+	<div data-role="header"> 
+	<h1>Add Your HomeWork Here</h1> 
+	<a href="#mainpage" class="ui-btn">Back</a>
+</div>
+	 <p></p>
         <form>
 			<label for="DateED">Date:</label>
             <input type="text" data-role="date" id="DateED" data-inline="false" class="datepicker">
@@ -82,6 +94,11 @@
 <!--view homework page start-->
 <div id="home" data-role="page">
     <div role="main" class="ui-content">
+	<div data-role="header"> 
+	<h1>HomeWork Tab</h1> 
+	<a href="#mainpage" class="ui-btn">Back</a>
+</div>
+	
 	<h5> todays date is...</h5>
 	<h3 id="Date"></h3>
 
@@ -99,7 +116,7 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
                         <th data-priority="1">Due Date</th>
                         <th data-priority="2">Class</th>
                         <th data-priority="3">Description</th>
-						<th data-priority="4">Edit</th>
+						<th data-priority="4">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -132,7 +149,7 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
                         <th data-priority="1">Due Date</th>
                         <th data-priority="2">Class</th>
                         <th data-priority="3">Description</th>
-						<th data-priority="4">Edit</th>
+						<th data-priority="4">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -165,7 +182,7 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
                         <th data-priority="1">Due Date</th>
                         <th data-priority="2">Class</th>
                         <th data-priority="3">Description</th>
-						<th data-priority="4">Edit</th>
+						<th data-priority="4">Delete</th>
 						
                     </tr>
                     </thead>
@@ -213,15 +230,15 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
 
 
 <div id="manageclass" data-role="page">
-       <p></p>
-	   Input Class Here
-	 <input type="text" id="AddclassED"><br>
-		<a href="#home" class="ui-btn" onClick="writeClass();">Add class</a>
-        <a href="#mainpage" class="ui-btn">Home</a>
-
-   <div data-role="collapsibleset">
-            <div data-role="collapsible" data-collapsed="true">
-                <h3>class</h3>
+      
+	  <div data-role="header"> 
+	<h1>Classes Tab</h1> 
+	<a href="#mainpage" class="ui-btn">Back</a>
+</div>
+	  
+<div data-role="collapsibleset">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Classes</h3>
                 <table data-role="table" id="classesTab" data-mode="" class="ui-responsive">
                     <tbody>
                     <tr>
@@ -244,6 +261,14 @@ document.getElementById("Date").innerHTML = new Date().toDateString();
                 </table>
             </div>
         </div>
+		<p></p>
+	   <h3>Input Class Here</h3>
+	 <input type="text" id="AddclassED"><br>
+		
+<a href="#home" class="ui-btn" onClick="writeClass();">Add class</a>
+        
+
+   
 		</div>
 <!--manange class page end-->
 
