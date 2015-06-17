@@ -231,14 +231,15 @@ $("#homework-table, #tests-table, #Assignments-table").on('click', "div.delete-e
 	closeOnConfirm: false,
 	closeOnCancel: false },
 	function(isConfirm){
-	if (isConfirm) { console.log("To Delete: " + $(this).attr("id"));
+	if (isConfirm) {
 	deleteEventID = $(this).attr("id");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
-	db.transaction(deleterow, txError, txSuccessFave);    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+	db.transaction(deleterow, txError, txSuccessFave);
+	swal("Deleted!", "Your imaginary file has been deleted.", "success");
 	} else {
 	swal("Cancelled", "Your imaginary file is safe :)", "error");   } });
 	
-//	console.log("To Delete: " + $(this).attr("id"));
+	//console.log("To Delete: " + $(this).attr("id"));
 	//deleteEventID = $(this).attr("id");
 	//db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	//db.transaction(deleterow, txError, txSuccessFave);
