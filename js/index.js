@@ -1,5 +1,7 @@
 
 
+
+
 function loadHomework(tx,results) {
 
 	$("#homework-table tbody").empty();
@@ -17,9 +19,9 @@ function loadHomework(tx,results) {
 		warningdate.setDate(warningdate.getDate() + daystoadd);
 	
 		
-		console.log("homework date " + homeworkdate);
-		console.log("current date " + currentdate);
-		console.log("warning date " + warningdate);
+		//console.log("homework date " + homeworkdate);
+		//console.log("current date " + currentdate);
+		//console.log("warning date " + warningdate);
 	
 		if(currentdate >= homeworkdate ) { 
 		row = "<tr class='overdue'> ";
@@ -29,15 +31,12 @@ function loadHomework(tx,results) {
 		row = "<tr class ='notoverdue'> ";
 		}
 		
-		
-		
-		
 		row += "<td>" + results.rows.item(i)['duedate'] + "</td>";
 		row += "<td>" + results.rows.item(i)['classname'] + "</td>";
 		row += "<td>" + results.rows.item(i)['description'] + "</td>";
-		row += "<td>  <a href='#mainpage' id='tab-button' class='ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all ui-btn-inline' ></a> </td>";
+		row += "<td>  <div class='ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all ui-btn-inline delete-event' id='" + results.rows.item(i)['eventid'] +"' ></div> </td>";
 		row += "</tr>";
-
+		//console.log(results.rows.item(1)['rowid']);
 		type = "";
 		switch (results.rows.item(i)['category']) {
 			case "HomeWork":
@@ -84,6 +83,7 @@ console.log("loads Classes from table");
 			
 function loadClassnameoptions(tx,results) {
 $("#ClassesED").empty();
+$("#ClassesED").append( "<option><p></p></option>" );
 row = "";
 for (i = 0; i < results.rows.length; i++) { 
 			row = "<option>";
@@ -122,7 +122,8 @@ function readTables() {
 }
 
 function createDb(tx) {
-    tx.executeSql("CREATE TABLE if not exists homework(duedate,classname,category,description)");
+    //tx.executeSql("CREATE TABLE if not exists homework(duedate,classname,category,description)");
+	 tx.executeSql("CREATE TABLE if not exists homework('eventid' INTEGER PRIMARY KEY ASC,'duedate','classname','category','description')");
 	 tx.executeSql("CREATE TABLE if not exists classes(classname)");
 	console.log("creates DB");
 	
@@ -134,7 +135,8 @@ function resetData() {
 	}
 function resetDb(tx) {
 	tx.executeSql("DROP TABLE IF EXISTS homework");
-	tx.executeSql("CREATE TABLE homework(duedate,classname,category,description)");
+	//tx.executeSql("CREATE TABLE homework(duedate,classname,category,description)");
+	tx.executeSql("CREATE TABLE homework('eventid' INTEGER PRIMARY KEY ASC,'duedate','classname','category','description')");
 	tx.executeSql("DROP TABLE IF EXISTS classes");
 	tx.executeSql("CREATE TABLE classes(classname)"); 
 
@@ -158,6 +160,8 @@ function writeClass() {
 function writeHomework() {
 	event.preventDefault();
 	if ($("#ClassesED").val() === null) {
+	alert("not working");
+	}else if ($("#ClassesED").val() === "") {
 	alert("not working");
 	}else{
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
@@ -188,7 +192,7 @@ function saveHomework(tx) {
 	console.log("duedate is " + duedate);
 	console.log("class is " + classname);
 	console.log("Category is " + category);
-    tx.executeSql("INSERT INTO homework(duedate,classname,category,description) VALUES (?, ?, ?, ?)",[duedate,classname,category,description]);
+    tx.executeSql("INSERT INTO homework(eventid, duedate,classname,category,description) VALUES (null, ?, ?, ?, ?)",[duedate,classname,category,description]);
 	console.log("saves homework into table");
 	
 	}
@@ -200,12 +204,30 @@ function txSuccessFave() {
 }
 
 
+$("#homework-table, #tests-table, #Assignments-table").on('click', "div.delete-event" ,function(event) {
+	console.log("To Delete: " + $(this).attr("id"));
+	deleteEventID = $(this).attr("id");
+	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
+	db.transaction(deleterow, txError, txSuccessFave);
+	
+	
+});
+
+function deleterow (tx) { 
+tx.executeSql ("DELETE FROM homework WHERE eventid = ?", [deleteEventID]);
+$.mobile.navigate( "#home" );
+}
+
+
+
 
 
 $( document ).ready(function() {
 
 	var db;
 
+	var deleteEventID;
+	
 	$('#mainpage').bind('pageinit', function(event) {
     console.log("binds page");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
@@ -218,6 +240,8 @@ $( document ).ready(function() {
 
 	
 	});
+	
+	
 });
 
 

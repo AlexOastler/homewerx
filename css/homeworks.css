@@ -25,3 +25,16 @@ color:green;
 .warning{
 color:yellow;
 }
+#homework-table{
+font-size:15px;
+font-weight: bold;
+}
+#Assignments-table{
+font-size:15px;
+font-weight: bold;
+}
+
+#Tests-table{
+font-size:15px;
+font-weight: bold;
+}
