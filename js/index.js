@@ -220,6 +220,8 @@ function txSuccessFave() {
 
 
 $("#homework-table, #tests-table, #Assignments-table").on('click', "div.delete-event" ,function(event) {
+	sweetAlert("Oops...", "You left a field blank", "error");
+	
 	console.log("To Delete: " + $(this).attr("id"));
 	deleteEventID = $(this).attr("id");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
