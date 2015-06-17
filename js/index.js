@@ -220,12 +220,28 @@ function txSuccessFave() {
 
 
 $("#homework-table, #tests-table, #Assignments-table").on('click', "div.delete-event" ,function(event) {
-	sweetAlert("Oops...", "You left a field blank", "error");
-	
-	console.log("To Delete: " + $(this).attr("id"));
+	swal({
+	title: "Are you sure?",
+	text: "You will not be able to recover this imaginary file!",
+	type: "warning",
+	showCancelButton: true,
+	confirmButtonColor: "#DD6B55",
+	confirmButtonText: "Yes, delete it!",
+	cancelButtonText: "No, cancel plx!",
+	closeOnConfirm: false,
+	closeOnCancel: false },
+	function(isConfirm){
+	if (isConfirm) { console.log("To Delete: " + $(this).attr("id"));
 	deleteEventID = $(this).attr("id");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
-	db.transaction(deleterow, txError, txSuccessFave);
+	db.transaction(deleterow, txError, txSuccessFave);    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+	} else {
+	swal("Cancelled", "Your imaginary file is safe :)", "error");   } });
+	
+//	console.log("To Delete: " + $(this).attr("id"));
+	//deleteEventID = $(this).attr("id");
+	//db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
+	//db.transaction(deleterow, txError, txSuccessFave);
 	
 	
 });
