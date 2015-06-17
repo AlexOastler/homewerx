@@ -53,7 +53,6 @@ function loadHomework(tx,results) {
 		}
 	//console.log("type is " + type);
 	$(type).append( row );
-	
 		
 		
 	}
@@ -220,24 +219,24 @@ function txSuccessFave() {
 
 
 $("#homework-table, #tests-table, #Assignments-table").on('click', "div.delete-event" ,function(event) {
+	deleteEventID = $(this).attr("id");
 	swal({
 	title: "Are you sure?",
-	text: "You will not be able to recover this imaginary file!",
+	text: "You will not be able to recover this item",
 	type: "warning",
 	showCancelButton: true,
 	confirmButtonColor: "#DD6B55",
 	confirmButtonText: "Yes, delete it!",
-	cancelButtonText: "No, cancel plx!",
+	cancelButtonText: "No, don't! delete it!",
 	closeOnConfirm: false,
 	closeOnCancel: false },
 	function(isConfirm){
 	if (isConfirm) {
-	deleteEventID = $(this).attr("id");
 	db = window.openDatabase("homeworkdb","0.1","GitHub Repo Db", 1000);
 	db.transaction(deleterow, txError, txSuccessFave);
-	swal("Deleted!", "Your imaginary file has been deleted.", "success");
+	swal("Deleted!", "Your item has been deleted.", "success");
 	} else {
-	swal("Cancelled", "Your imaginary file is safe :)", "error");   } });
+	swal("Cancelled", "Your item is safe ", "error");   } });
 	
 	//console.log("To Delete: " + $(this).attr("id"));
 	//deleteEventID = $(this).attr("id");
